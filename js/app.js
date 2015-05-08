@@ -2,9 +2,16 @@
  * Created by bhuvaneshwaranm on 7/5/15.
  */
 var app=angular.module("Test",[]);
-app.controller("TestController",['$scope',function($scope){
+app.controller("TestController",['$scope','$interval',function($scope,$interval){
     debugger;
     $scope.datemodel="hai";
+    $scope.count=1;
+    $interval(function(){
+        //$scope.datemodel="bye";
+    })
+    $scope.changeModel=function(){
+        $scope.datemodel="bye"+$scope.count++;
+    }
 
 }]);
 app.directive("datePicker",function(){
@@ -15,8 +22,8 @@ app.directive("datePicker",function(){
             picker = new Pikaday(
                 {
                     field:element[0],
-                    onselect:function(date){
-                        $scope.datepickerModel=date;
+                    onSelect:function(date){
+                        $scope.datepickerModel=picker.toString();
 
                     }
             });
